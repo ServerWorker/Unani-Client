@@ -1,0 +1,21 @@
+{
+  "name": "dr-iqbal-unani-heart-clinic",
+  "version": "1.0.0",
+  "description": "Website for Dr. Iqbal Unani Heart Clinic, Hyderabad",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@paper-design/shaders": "^0.0.10",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
+    "tailwind-merge": "^2.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^8.3.4"
+  }
+}
