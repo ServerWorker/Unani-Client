@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Dr. Iqbal Unani Heart Clinic — Design System & Master Stylesheet
+   Dr. Ibrahim Unani Heart Clinic — Design System & Master Stylesheet
    Modern, Sleek, Mobile-First with Fluid Gradients & Micro-Interactions
    ========================================================================== */
 
@@ -59,6 +59,53 @@
   --secondary: 42 63% 52%;
   --secondary-foreground: 160 30% 12%;
   --radius: 18px;
+
+  /* shadcn UI tokens */
+  --card: 0 0% 100%;
+  --card-foreground: 160 30% 12%;
+  --muted: 155 12% 40%;
+  --muted-foreground: 155 12% 40%;
+  --accent: 155 30% 92%;
+  --accent-foreground: 160 30% 12%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 150 15% 88%;
+  --input: 150 15% 88%;
+  --ring: 165 72% 16%;
+}
+
+/* ==========================================================================
+   Smooth Vertical Marquee Keyframes & Utilities
+   ========================================================================== */
+@keyframes scroll-up-smooth {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scroll-down-smooth {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animate-scroll-up {
+  animation: scroll-up-smooth 32s linear infinite;
+}
+
+.animate-scroll-down {
+  animation: scroll-down-smooth 32s linear infinite;
+}
+
+.animate-scroll-up:hover,
+.animate-scroll-down:hover {
+  animation-play-state: paused;
 }
 
 *, *::before, *::after {
@@ -1584,6 +1631,151 @@ h3 {
     text-align: center;
     gap: 0.6rem;
   }
+}
+
+/* ==========================================================================
+   Patient Reviews & Kinetic Marquee Container Styles
+   ========================================================================== */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.review-card {
+  background: var(--surface-gradient);
+  border: 1px solid var(--cream-border);
+  border-radius: var(--radius-md);
+  padding: 1.6rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(27, 104, 85, 0.3);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.review-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  object-fit: cover;
+  border: 2px solid var(--green-200);
+}
+
+.review-author h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--green-950);
+  font-weight: 700;
+}
+
+.review-author span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.review-stars {
+  color: #e5a93b;
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.75rem;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.review-footer {
+  font-size: 0.78rem;
+  color: var(--muted-light);
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
+/* Vertical marquee live section */
+.marquee-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 520px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(6, 34, 28, 0.03) 0%, rgba(212, 175, 55, 0.04) 100%);
+  border: 1px solid var(--cream-border);
+  margin: 2rem 0;
+  padding: 1.5rem 0.5rem;
+}
+
+.marquee-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  height: 100%;
+}
+
+@media (max-width: 980px) {
+  .marquee-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .marquee-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.marquee-col {
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}
+
+.marquee-col-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.marquee-fade-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: linear-gradient(180deg, var(--cream-base) 0%, rgba(250, 247, 239, 0) 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.marquee-fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: linear-gradient(0deg, var(--cream-base) 0%, rgba(250, 247, 239, 0) 100%);
+  z-index: 5;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

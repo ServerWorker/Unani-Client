@@ -1,33 +1,40 @@
-# Dr. Iqbal Unani Heart Clinic — Website
+# Dr. Ibrahim Unani Heart Clinic — Website
 
-A responsive, high-performance five-page clinic website built with modern CSS3 gradients, fluid micro-interactions, responsive mobile menu drawer, and ready for deployment on **Vercel**, **Netlify**, or **GitHub Pages**.
+A responsive, high-performance clinic website built with modern CSS3 gradients, fluid micro-interactions, responsive mobile menu drawer, authentic patient feedback archive, and ready for 1-click deployment on **Vercel**, **Netlify**, or **GitHub Pages**.
 
 ---
 
-## 🚀 Deployment Instructions
+## 🚀 Deployment Instructions for Vercel
 
-### Option 1: Deploy to Vercel
-1. Install Vercel CLI (or connect via GitHub):
-   ```bash
-   npm i -g vercel
-   vercel
-   ```
-2. Or push your project to GitHub and import it on [vercel.com](https://vercel.com).
-3. The project includes [`vercel.json`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/vercel.json) pre-configured with security headers and clean URL routing.
+### Why Vercel Hosting Failed Previously & How It's Fixed:
+When a repository has a `package.json` with a `build` script (`vite build`), Vercel automatically detects it and runs `npm run build`. Previously:
+1. `vite build` only packaged `index.html` into `dist`, leaving subpages (`about.html`, `contact.html`, `reviews.html`, `services.html`) unbuilt and returning 404s.
+2. The project was missing explicit Vercel output / framework settings.
 
-### Option 2: Deploy to Netlify
-1. Install Netlify CLI:
-   ```bash
-   npm i -g netlify-cli
-   netlify deploy --prod --dir=.
-   ```
-2. Or drag-and-drop the directory directly onto [app.netlify.com/drop](https://app.netlify.com/drop).
-3. The project includes [`netlify.toml`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/netlify.toml) pre-configured with security headers and static publishing roots.
+### The Fix Implemented:
+1. Updated [`vercel.json`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/vercel.json) to serve the site reliably with `cleanUrls: true` and routing fallback.
+2. Updated `vite.config.ts` so `vite build` includes all HTML entry pages (`index.html`, `about.html`, `contact.html`, `reviews.html`, `services.html`) with assets into `dist/`.
+3. Set build configuration to support both zero-configuration static serving or automated Vite bundling.
+
+### Deploying to Vercel:
+1. Import repository on [Vercel](https://vercel.com/new).
+2. Framework Preset: **Other** (or **Vite**).
+3. If using Vite:
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+4. If deploying static:
+   - **Build Command**: Leave empty or `echo 'Static build'`
+   - **Output Directory**: `.` (Root)
 
 ---
 
 ## 🎨 Design Upgrades & Features Added
+- **Updated Practitioner Branding**: Dr. Ibrahim Unani Heart Clinic, Hyderabad.
 - **Modern Gradient Palette**: Emerald (`#06221c`, `#134e40`) with warm gold and metallic undertones.
+- **Patient Reviews & Social Proof**:
+  - Continuous vertical kinetic marquee review cards feed.
+  - Detailed patient testimonial grid with verified tags and star ratings.
+  - Transparent Unani cardiology care guidance.
 - **Micro-Animations & Heartbeat Motion**: Pulsing clinic emblem with dynamic orbiting dashed rings and floating badges.
 - **Sleek Mobile & Tablet Experience**: 
   - Glassmorphic backdrop-blur header.
@@ -43,6 +50,10 @@ A responsive, high-performance five-page clinic website built with modern CSS3 g
 The codebase supports standard shadcn UI conventions:
 
 - **Component Path**: `components/ui/`
+  - [`components/ui/testimonials-with-verticalmarquee.tsx`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/components/ui/testimonials-with-verticalmarquee.tsx)
+  - [`components/ui/testimonials-with-verticalmarquee-utils/kinetic-testimonials.tsx`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/components/ui/testimonials-with-verticalmarquee-utils/kinetic-testimonials.tsx)
+  - [`components/ui/card.tsx`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/components/ui/card.tsx)
+  - [`components/ui/avatar.tsx`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/components/ui/avatar.tsx)
   - [`components/ui/liquid-metal-button.tsx`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/components/ui/liquid-metal-button.tsx)
   - [`components/ui/demo.tsx`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/components/ui/demo.tsx)
 - **Utilities**: [`lib/utils.ts`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/lib/utils.ts) (providing `cn()` helper via `clsx` and `tailwind-merge`)
@@ -53,18 +64,17 @@ The codebase supports standard shadcn UI conventions:
   - [`package.json`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/package.json)
 
 ### Why `/components/ui` is the Default Path
-In the **shadcn UI** ecosystem, primitive and reusable UI elements (like buttons, dialogs, dropdowns, inputs) reside in `components/ui`. This convention separates atomic UI primitives from complex, feature-specific application components (like `Navbar`, `Sidebar`, `HeroSection`), ensuring modularity, easy updates via `npx shadcn@latest add <component>`, and predictable imports (`@/components/ui/<component>`).
-
-### Installing React Dependencies (if running with React / Vite / Next.js)
-```bash
-npm install clsx lucide-react tailwind-merge @paper-design/shaders
-```
+In the **shadcn UI** ecosystem, primitive and reusable UI elements (like buttons, dialogs, cards, avatars) reside in `components/ui`. This convention separates atomic UI primitives from complex, feature-specific application components (like `Navbar`, `Sidebar`, `HeroSection`), ensuring modularity, easy updates via `npx shadcn@latest add <component>`, and predictable imports (`@/components/ui/<component>`).
 
 ---
 
 ## 💻 Local Preview
 
 Simply open [`index.html`](file:///c:/Users/NABI/Downloads/dr_iqbal_unani_heart_clinic_website/index.html) in your browser or run:
+```bash
+npm run dev
+```
+or
 ```bash
 npx serve -s .
 ```

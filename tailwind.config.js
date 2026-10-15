@@ -29,6 +29,20 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      keyframes: {
+        "scroll-up-smooth": {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(-50%)" },
+        },
+        "scroll-down-smooth": {
+          "0%": { transform: "translateY(-50%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
+      },
+      animation: {
+        "scroll-up": "scroll-up-smooth 32s linear infinite",
+        "scroll-down": "scroll-down-smooth 32s linear infinite",
+      },
     },
   },
   plugins: [],
